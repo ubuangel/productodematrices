@@ -3,7 +3,7 @@
 // Author      : angelote
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : Hproductodematrices C++, Ansi-style
 //============================================================================
 
 #include <iostream>
@@ -11,9 +11,7 @@
 #include <string>
 using namespace std;
 
-
-
-void llenar_matriz(int A[][c],int f,int c ){
+void llenar_matriz(double A[][10],int f,int c ){
 	    cout<<"ingrese datos de la matriz a:"<<endl;
 	    for(int i=0;i<f;i++){
 	        for(int j=0;j<c;j++){
@@ -21,7 +19,7 @@ void llenar_matriz(int A[][c],int f,int c ){
 	        }
 	    }
 }
-void llenar_matriz(int B[][m],int c,int m){
+void llenar_matriz2(double B[][10],int c,int m){
 	    cout<<"ingrese datos de la matriz b:"<<endl;
 	    for(int i=0;i<c;i++){
 	        for(int j=0;j<m;j++){
@@ -30,7 +28,7 @@ void llenar_matriz(int B[][m],int c,int m){
 	    }
 	}
 
-int multmatrix(int A[][c],int B[][m],int Z[f][m]){
+void multmatrix(double A[][10],double B[][10],double Z[][10],int m,int f,int c){
 for (int i = 0; i < f; i++) {
 	for (int j = 0; j < m; j++) {
 		for (int z = 0; z < c; z++) {
@@ -39,11 +37,11 @@ for (int i = 0; i < f; i++) {
 	}
 }
 }
-void mostrar_matriz(double M[3][3]){
+void mostrar_matriz(double Z[][10],int f,int m ){
 	    cout<<endl;
-	    for(int i=0;i<3;i++){
-	        for(int j=0;j<3;j++){
-	            cout<<M[i][j]<<"\t";
+	    for(int i=0;i<f;i++){
+	        for(int j=0;j<m;j++){
+	            cout<<Z[i][j]<<" \t";
 	        }cout<<endl;
 	    }
 	    cout<<endl;
@@ -51,19 +49,21 @@ void mostrar_matriz(double M[3][3]){
 
 int main(){
 		int m,f,c;
-		int A[f][c];
-		int B[c][m];
-		int Z[f][m];
-		cout<<" numero de filas dematriz a "<<endl;
+		double A[10][10];//f c-
+		double B[10][10];// c m
+		double Z[10][10];// f m
+		cout<<" numero de filas de la matriz a "<<endl;
 		cin>>f;
-		cout<<" columnas de matriz a "<<endl;
+		cout<<" columnas de la matriz a "<<endl;
 		cin>>c;
-		cout<<" numero de filas dematriz b "<<endl;
+		cout<<" numero de filas de la matriz b "<<endl;
 		cin>>c;
-		cout<<" columnas de matriz b "<<endl;
+		cout<<" columnas de la matriz b "<<endl;
 		cin>>m;
 		llenar_matriz(A,f,c);
-		llenar_matriz(B,c,m);
-		multmatrix(A, B,Z);
+
+		llenar_matriz2(B,c,m);
+		multmatrix(A, B,Z,f,m,c);
+		mostrar_matriz(Z,f,m);
 
 	}
