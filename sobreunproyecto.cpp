@@ -12,7 +12,7 @@
 using namespace std;
 
 void llenar_matriz(double A[][10],int f,int c ){
-	    cout<<"ingrese datos de la matriz a:"<<endl;
+	    cout<<"ingrese datos de la matriz a:\n";
 	    for(int i=0;i<f;i++){
 	        for(int j=0;j<c;j++){
 	            cin>>A[i][j];
@@ -20,7 +20,7 @@ void llenar_matriz(double A[][10],int f,int c ){
 	    }
 }
 void llenar_matriz2(double B[][10],int c,int m){
-	    cout<<"ingrese datos de la matriz b:"<<endl;
+	    cout<<"ingrese datos de la matriz b:\n";
 	    for(int i=0;i<c;i++){
 	        for(int j=0;j<m;j++){
 	            cin>>B[i][j];
@@ -52,13 +52,13 @@ int main(){
 		double A[10][10];//f c-
 		double B[10][10];// c m
 		double Z[10][10];// f m
-		cout<<" numero de filas de la matriz a "<<endl;
+		cout<<" numero de filas de la matriz a \n";
 		cin>>f;
-		cout<<" columnas de la matriz a "<<endl;
+		cout<<" columnas de la matriz a  \n";
 		cin>>c;
-		cout<<" numero de filas de la matriz b "<<endl;
+		cout<<" numero de filas de la matriz b  \n";
 		cin>>c;
-		cout<<" columnas de la matriz b "<<endl;
+		cout<<" columnas de la matriz b  \n";
 		cin>>m;
 		llenar_matriz(A,f,c);
 
