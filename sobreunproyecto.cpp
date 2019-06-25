@@ -7,51 +7,79 @@
 //============================================================================
 
 #include <iostream>
-#include <fstream>
-#include <string>
+
 using namespace std;
 
-void llenar_matriz(double A[][10],int f,int c ){
-	    cout<<"ingrese datos de la matriz a:\n";
+void llenar_matriz(int A[][20],int f,int c ){
+	    cout<<"ingrese datos de la matriz A:\n";
 	    for(int i=0;i<f;i++){
 	        for(int j=0;j<c;j++){
 	            cin>>A[i][j];
 	        }
 	    }
 }
-void llenar_matriz2(double B[][10],int c,int m){
-	    cout<<"ingrese datos de la matriz b:\n";
+void llenar_matriz2(int B[][20],int c,int m){
+	    cout<<"ingrese datos de la matriz B:\n";
 	    for(int i=0;i<c;i++){
 	        for(int j=0;j<m;j++){
 	            cin>>B[i][j];
 	        }
 	    }
 	}
+void inicializar(int Z[][20],int f,int m){
+	for(int i=0; i<f; ++i)
+	        for(int j=0; j<m; ++j)
+	            Z[i][j] = 0;
+}
+void multmatrix(int A[][20],int B[][20],int Z[][20],int m,int f,int c){
+	for (int i = 0; i < f; i++)
+		for (int j = 0; j < m; j++)
+			for (int z = 0; z < c; z++)
+				Z[i][j] +=A[i][z]* B[z][j];
 
-void multmatrix(double A[][10],double B[][10],double Z[][10],int m,int f,int c){
-for (int i = 0; i < f; i++) {
-	for (int j = 0; j < m; j++) {
-		for (int z = 0; z < c; z++) {
-			Z[i][j]+=A[i][z]*B[z][j];
-		}
-	}
 }
-}
-void mostrar_matriz(double Z[][10],int f,int m ){
+void mostrar_matrizA(int A[ ][20],int f,int c ){
 	    cout<<endl;
-	    for(int i=0;i<f;i++){
-	        for(int j=0;j<m;j++){
-	            cout<<Z[i][j]<<" \t";
-	        }cout<<endl;
+	    for(int i=0;i<f ; ++i)
+	    {
+	        for(int j=0;j<c ;++j)
+	        {
+	           cout<<A[i][j]<<"  ";
+	        }
+	        cout<<endl;
 	    }
+
+	}
+void mostrar_matrizB(int B[ ][20],int c,int m ){
 	    cout<<endl;
+	    for(int i=0;i<c ; ++i)
+	    {
+	        for(int j=0;j<m ;++j)
+	        {
+	           cout<<B[i][j]<<"  ";
+	        }
+	        cout<<endl;
+	    }
+
+	}
+void mostrar_matriz(int Z[ ][20],int f,int m ){
+	    cout<<endl;
+	    for(int i=0;i<f; ++i)
+	    {
+	        for(int j=0;j<m;++j)
+	        {
+	           cout<<Z[i][j]<<"  ";
+	        }
+	        cout<<endl;
+	    }
+
 	}
 
 int main(){
 		int m,f,c;
-		double A[10][10];//f c-
-		double B[10][10];// c m
-		double Z[10][10];// f m
+		int A[20][20];//f c
+		int B[20][20];// c m
+		int Z[20][20];// f m
 		cout<<" numero de filas de la matriz a \n";
 		cin>>f;
 		cout<<" columnas de la matriz a  \n";
@@ -60,10 +88,19 @@ int main(){
 		cin>>c;
 		cout<<" columnas de la matriz b  \n";
 		cin>>m;
-		llenar_matriz(A,f,c);
 
+		llenar_matriz(A,f,c);
 		llenar_matriz2(B,c,m);
+
+		inicializar(Z,f,m);
+
 		multmatrix(A, B,Z,f,m,c);
+
+		cout<<"La matriz generada A es: \n";
+		mostrar_matrizA(A,f,c);
+		cout<<"La matriz generada B es: \n";
+		mostrar_matrizB(B,c,m);
+		cout<<"La matriz generada es: \n";
 		mostrar_matriz(Z,f,m);
 
-	}
+}
