@@ -7,7 +7,7 @@
 #include<iostream>
 #include<vector>
 #include <cassert>
-using namespace std;
+
 
 double **iniciar(const int filas,const int columnas) {
 
