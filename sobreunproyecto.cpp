@@ -1,103 +1,99 @@
-//============================================================================
-// Name        : sobreunproyecto.cpp
-// Author      : angelote
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hproductodematrices C++, Ansi-style
-//============================================================================
+/*
+ * litlle.cpp
+ *
+ *  Created on: 3 jul. 2020
+ *      Author: angel
+ */
+#include<iostream>
+#include<vector>
+#include <cassert>
+using namespace std;
 
-#include <iostream>
+double **iniciar(const int filas,const int columnas) {
 
-void llenar_matriz(int A[][20],int f,int c ){
-	    std::cout<<"ingrese datos de la matriz A:\n";
-	    for(int i=0;i<f;i++){
-	        for(int j=0;j<c;j++){
-	            std::cin>>A[i][j];
-	        }
-	    }
+	double **mat = new double*[filas];
+	for (size_t i = 0; i < filas; ++i)
+		mat[i] = new double[columnas];
+
+	return mat;
+
 }
-void llenar_matriz2(int B[][20],int c,int m){
-	    std::cout<<"ingrese datos de la matriz B:\n";
-	    for(int i=0;i<c;i++){
-	        for(int j=0;j<m;j++){
-	            std::cin>>B[i][j];
-	        }
-	    }
-	}
-void multmatrix(int (*A)[20],int (*B)[20],int (*Z)[20],int f,int m,int c){
 
-	for (int i = 0; i < f; i++){
-		for (int j = 0; j < m; j++){
-			 Z[i][j]=0;
-			for (int z = 0; z < c; z++){
-				Z[i][j] +=A[i][z]* B[z][j];
-			}
+void llenar_matriz(double **A,const  int f,const int c) {
+	std::cout << "ingrese datos de la matriz A:\n";
+	for (size_t i = 0; i < f; i++) {
+		for (size_t j = 0; j < c; j++) {
+			std::cin >> A[i][j];
 		}
+	}
+}
+
+
+void mostrar_matriz(double **mat, const int f, const int c) {
+	for (size_t i = 0; i < f; ++i) {
+		for (size_t j = 0; j < c; ++j) {
+			std::cout << mat[i][j] << "  ";
+		}
+		std::cout << std::endl;
+	}
 
 }
+
+void destruir(double **&mat,const int filas) {
+	 if (mat)
+	    {
+	        for (size_t i = 0; i < filas; ++i)
+	        {
+	            delete[] mat[i]; //delete each row..
+	        }
+
+	        delete[] mat;  //delete the rows..
+	        mat = nullptr;
+	    }
+
 }
-void mostrar_matrizA(int (*A)[20],int f,int c ){
-	    std::cout<<endl;
-	    for(int i=0;i<f ; ++i)
-	    {
-	        for(int j=0;j<c ;++j)
-	        {
-	           std::cout<<A[i][j]<<"  ";
-	        }
-	        std::cout<<endl;
-	    }
 
+int main() {
+	int m, f, c,d;
+
+	std::cout << " numero de filas de la matriz a \n";
+	std::cin >> f;
+	std::cout << " columnas de la matriz a  \n";
+	std::cin >> c;
+	std::cout << " numero de filas de la matriz b  \n";
+	std::cin >> d;
+	 assert(c == d);
+	std::cout << " columnas de la matriz b  \n";
+	std::cin >> m;
+
+	double** matA = iniciar(f, c);
+	double** matB = iniciar(d, m);
+	double** matC = iniciar(f, m);
+
+	llenar_matriz(matA,f,c);
+	llenar_matriz(matB,c,m);
+
+
+for (int i = 0; i < f; ++i) {
+	for (size_t j = 0; j < m; ++j) {
+		matC[i][j]=0;
+		for (int z = 0; z < d; ++z) {
+			matC[i][j]+=matA[i][z]*matB[z][j];
+		}
 	}
-void mostrar_matrizB(int (*B)[20],int c,int m ){
-	    std::cout<<endl;
-	    for(int i=0;i<c ; ++i)
-	    {
-	        for(int j=0;j<m ;++j)
-	        {
-	           std::cout<<B[i][j]<<"  ";
-	        }
-	        std::cout<<endl;
-	    }
+}
 
-	}
-void mostrar_matriz(int (*Z)[20],int f,int m ){
-	    std::cout<<endl;
-	    for(int i=0;i<f; ++i)
-	    {
-	        for(int j=0;j<m;++j)
-	        {
-	           std::cout<<Z[i][j]<<"  ";
-	        }
-	        std::cout<<endl;
-	    }
+std::cout << "La matriz generada A es: \n";
+	mostrar_matriz(matA, f, c);
+	std::cout << "La matriz generada B es: \n";
+	mostrar_matriz(matB, d, m);
+	std::cout << "La matriz generada es: \n";
+	mostrar_matriz(matC, f, m);
 
-	}
-
-int main(){
-		int m,f,c;
-		int A[20][20];//f c
-		int B[20][20];// c m
-		int Z[20][20];// f m
-		std::cout<<" numero de filas de la matriz a \n";
-		std::cin>>f;
-		std::cout<<" columnas de la matriz a  \n";
-		std::cin>>c;
-		std::cout<<" numero de filas de la matriz b  \n";
-		std::cin>>c;
-		std::cout<<" columnas de la matriz b  \n";
-		std::cin>>m;
-
-		llenar_matriz(A,f,c);
-		llenar_matriz2(B,c,m);
+destruir(matA,f);
+destruir(matB,f);
+destruir(matC,f);
 
 
-		multmatrix(A,B,Z,f,m,c);
-
-		std::cout<<"La matriz generada A es: \n";
-		mostrar_matrizA(A,f,c);
-		std::cout<<"La matriz generada B es: \n";
-		mostrar_matrizB(B,c,m);
-		std::cout<<"La matriz generada es: \n";
-		mostrar_matriz(Z,f,m);
 
 }
