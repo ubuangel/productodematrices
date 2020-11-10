@@ -1,3 +1,4 @@
+/*comment*/
 int main(int argc, char **argv) {
 	int A[3][2][2]={{{2,5},{7,9}},
 					{{3,4},{6,1}},
